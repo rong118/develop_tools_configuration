@@ -1,2 +1,3 @@
-# dev_setup
-my development setup
+# My Development Setup
+
+## iTerm2 Mac setup ()
