@@ -84,3 +84,14 @@ Tabs:
 :tabnext、gt 或 <C-PageDown> 可以切换到下一个标签页
 :tabNext、:tabprevious 、gT 或 <C-PageUp> 可以切换到上一个标签页
 :tabfirst 或 :tabrewind 切换到第一个标签页:tablast 切换到最后一个标签页
+
+自动完成:
+Vim 内置有自动完成功能。最基本的自动完成功能有两种：
+基于当前文件文本的自动完成
+基于文件系统的自动完成
+
+Ctrl-p / Ctrl-n
+
+剪切粘贴：
+d/y 
+p
