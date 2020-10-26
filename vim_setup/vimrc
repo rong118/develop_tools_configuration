@@ -10,19 +10,27 @@ set history=1000
 " 输入的命令显示出来，看的清楚些
 set showcmd
 
-" 状态行显示的内容
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+set showmode
 
 " 启动显示状态行1，总是显示状态行2
 set laststatus=2
 
+" 状态行显示的内容
+" disable it because using vimairline
+"set statusline=[DIRS=%F%m%r%h%w]\ 
+"set statusline+=[FORMAT=%{&ff}]\ 
+"set statusline+=[TYPE=%Y]\ 
+"set statusline+=[POS=%l,%v]\ 
+"set statusline+=[PERCENT=%p%%]\ 
+"set statusline+=%{strftime(\"%d/%m/%y\")}\ 
+
 " 语法高亮显示
 syntax on
-" set fileencodings=utf-8,gb2312,gbk,cp936,latin-1
-" set fileencoding=utf-8
-" set termencoding=utf-8
-" set fileformat=unix
-" set encoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,cp936,latin-1
+set fileencoding=utf-8
+set termencoding=utf-8
+set fileformat=unix
+set encoding=utf-8
 
 " 配色方案
 colorscheme gruvbox
@@ -30,6 +38,7 @@ colorscheme gruvbox
 " 指定配色方案是256色
 set t_Co=256
 
+" 
 set wildmenu
 
 " 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题
@@ -48,6 +57,12 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" 启用撤销
+set undodir=~/.vim/undodir
+if !isdirectory(&undodir)
+    call mkdir(&undodir, 'p', 0700)
+endif
+
 " 用空格代替tab
 set expandtab
 
@@ -64,10 +79,12 @@ set shiftwidth=4
 set showmatch
 
 " 文件缩进及tab个数
-au FileType html,python,vim,javascript setl shiftwidth=4
-au FileType html,python,vim,javascript setl tabstop=4
-au FileType java,php setl shiftwidth=4
-au FileType java,php setl tabstop=4
+autocmd FileType html,python,vim,javascript setl shiftwidth=4 tabstop=4
+autocmd FileType java setl shiftwidth=4 tabstop=4
+
+autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
+autocmd FileType json  setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType vim   setlocal expandtab shiftwidth=2 softtabstop=2
 
 " 高亮搜索的字符串
 set hlsearch
@@ -93,12 +110,21 @@ set cursorline
 " 突出显示当前列
 " set cursorcolumn
 
+" 支持鼠标操作
+if has('mouse')
+  if has('gui_running') || (&term =~ 'xterm' && !has('mac'))
+    set mouse=a
+  else
+    set mouse=nvi
+  endif
+endif
+
 "设置光标样式为竖线vertical bar
 " Change cursor shape between insert and normal mode in iTerm2.app
-"if $TERM_PROGRAM =~ "iTerm"
+if $TERM_PROGRAM =~ "iTerm"
 let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
 let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-"endif
+endif
 
 " 共享剪贴板
 set clipboard+=unnamed
@@ -109,6 +135,25 @@ set autoread
 " 插件管理 vim-plug
 call plug#begin()
 Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-autocmd VimEnter * NERDTree
+" 启动nerdtree
+" autocmd VimEnter * NERDTree
+
+" vim设定airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16'
+
+" 按键map
+map <F1> : NERDTreeToggle<CR>
+map <F2> : tabprevious<CR>
+map <F3> : tabnext<CR>
+map <F4> : tabclose<CR>
+
+" 设定 timer
+set updatetime=100

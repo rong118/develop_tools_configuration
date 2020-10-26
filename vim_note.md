@@ -19,7 +19,6 @@ Vim notes
 
 跳转:
 
-
 撤销：
 Ctrl-r : redo
 u : undo
