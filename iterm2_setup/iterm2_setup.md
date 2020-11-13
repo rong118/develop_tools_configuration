@@ -10,6 +10,8 @@
 
     Solarized Dark theme：http://ethanschoonover.com/solarized
 
+    Material Design theme: https://github.com/MartinSeeler/iterm2-material-design
+
 3. install Oh My Zsh
 
     ```
