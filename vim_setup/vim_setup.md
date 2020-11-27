@@ -1,6 +1,6 @@
-## vim setup
+# vim setup
 
-# Setup
+## Setup
 
 [vimrc](https://github.com/rong118/dev_setup/blob/master/vim_setup/vimrc)
 
@@ -10,6 +10,6 @@
 
 [VimPlug](https://vimawesome.com/plugin/vim-plug)
 
-# Vim Note
+## Vim Note
 
 [vim note](https://github.com/rong118/dev_setup/blob/master/vim_setup/vim_note.md)
