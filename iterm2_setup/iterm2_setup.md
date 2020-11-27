@@ -12,6 +12,8 @@
 
     Material Design theme: https://github.com/MartinSeeler/iterm2-material-design
 
+    Gruvbox theme: https://github.com/herrbischoff/iterm2-gruvbox
+
 3. install Oh My Zsh
 
     ```
@@ -53,3 +55,5 @@
     ```
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     ```
+
+8. setup your alias and others
