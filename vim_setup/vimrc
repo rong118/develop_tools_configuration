@@ -39,7 +39,7 @@ set background=dark
 " 指定配色方案是256色
 set t_Co=256
 
-" 
+" 命令行补全 
 set wildmenu
 
 " 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题
@@ -133,6 +133,9 @@ set clipboard+=unnamed
 " 文件被改动时自动载入
 set autoread
 
+" 出错不出响声
+set visualbell
+
 " 插件管理 vim-plug
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -143,7 +146,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
 call plug#end()
 
-" 启动nerdtree
+" 启动
 " autocmd VimEnter * NERDTree
 
 " vim设定airline
@@ -152,10 +155,33 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 
 " 按键map
-map <F1> : NERDTreeToggle<CR>
-map <F2> : tabprevious<CR>
-map <F3> : tabnext<CR>
-map <F4> : tabclose<CR>
+"map <F1> : NERDTreeToggle<CR>
+"map <F2> : tabprevious<CR>
+"map <F3> : tabnext<CR>
+"map <F4> : tabclose<CR>
+
+" 打开nerdtree
+map <leader>nt : NERDTreeToggle<CR>
+
+" 处理tab
+map <leader>ta : tabnew<CR>
+map <leader>tp : tabprevious<CR>
+map <leader>tn : tabnext<CR>
+map <leader>tc : tabclose <CR>
+
+" 处理 buffer
+map <leader>bn : new<CR>
+map <leader>bd : bd<CR>
+
+" 分割屏幕 vs and sp
+map <leader>vs : vs<CR>
+map <leader>vh : sp<CR>
+
+" YCM 
+map <leader>gt : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " 设定 timer
 set updatetime=200
+
+" 切换回normal模式变快
+set timeoutlen=1000 ttimeoutlen=0
