@@ -134,7 +134,11 @@ let &t_EI="\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
 " 共享剪贴板
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 
 " 文件被改动时自动载入
 set autoread
