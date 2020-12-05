@@ -87,6 +87,12 @@ autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 c
 autocmd FileType json  setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType vim   setlocal expandtab shiftwidth=2 softtabstop=2
 
+" comment (cc) and uncomment (cu) code
+autocmd FileType perl,python map <silent>cc :s,^\(\s*\)[^# \t]\@=,\1\# ,e<CR>:nohls<CR>zvj
+autocmd FileType perl,python map <silent>cu :s,^\(\s*\)# \s\@!,\1,e<CR>:nohls<CR>zvj
+autocmd FileType javascript,java,c,cpp map <silent>cc :s,^\(\s*\)[^// \t]\@=,\1\// ,e<CR>:nohls<CR>zvj
+autocmd FileType javascript,java,c,cpp map <silent>cu :s,^\(\s*\)// \s\@!,\1,e<CR>:nohls<CR>zvj
+
 " 高亮搜索的字符串
 set hlsearch
 
@@ -128,7 +134,7 @@ let &t_EI="\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
 " 共享剪贴板
-set clipboard+=unnamed
+set clipboard=unnamedplus
 
 " 文件被改动时自动载入
 set autoread
