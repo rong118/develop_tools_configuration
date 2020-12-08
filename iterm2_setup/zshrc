@@ -10,6 +10,7 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
 
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -62,6 +63,9 @@ ZSH_THEME="agnoster"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Setup auto-suggestion style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#808080"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
