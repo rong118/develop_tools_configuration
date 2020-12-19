@@ -190,6 +190,9 @@ map <leader>vh : sp<CR>
 " YCM 
 map <leader>gt : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" Toggle highlight search
+map <leader>rh : set hlsearch!<CR>
+
 " 设定 timer
 set updatetime=200
 
