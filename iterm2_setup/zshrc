@@ -109,7 +109,8 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
-# export PATH="/usr/local/opt/node@12/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="/usr/local/opt/node@14/bin:$PATH"
 
 # Variables
 github="/Users/rongli/GitHub"
