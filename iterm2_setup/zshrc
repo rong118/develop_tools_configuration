@@ -100,9 +100,11 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gh="cd ~/Github"
-alias lr="ls -ltr"
+alias cdgh="cd ~/Github"
+alias ltr="ls -ltr"
+alias v="vim"
 alias gs="git status"
+alias gb="git branch"
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
