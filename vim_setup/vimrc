@@ -156,6 +156,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
+Plug 'lfv89/vim-interestingwords'
 call plug#end()
 
 " 启动
@@ -171,7 +172,6 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#excludes = ['branches', 'index']
 " let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|term://|undotree|vimfiler'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-
 let g:airline_theme='base16'
 
 " 按键map
