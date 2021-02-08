@@ -89,10 +89,10 @@ autocmd FileType json  setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType vim   setlocal expandtab shiftwidth=2 softtabstop=2
 
 " comment (cc) and uncomment (cu) code
-autocmd FileType perl,python map <silent>cc :s,^\(\s*\)[^# \t]\@=,\1\# ,e<CR>:nohls<CR>zvj
-autocmd FileType perl,python map <silent>cu :s,^\(\s*\)# \s\@!,\1,e<CR>:nohls<CR>zvj
-autocmd FileType javascript,java,c,cpp map <silent>cc :s,^\(\s*\)[^// \t]\@=,\1\// ,e<CR>:nohls<CR>zvj
-autocmd FileType javascript,java,c,cpp map <silent>cu :s,^\(\s*\)// \s\@!,\1,e<CR>:nohls<CR>zvj
+autocmd FileType perl,python map <leader>cc :s,^\(\s*\)[^# \t]\@=,\1\# ,e<CR>:nohls<CR>zvj
+autocmd FileType perl,python map <leader>cu :s,^\(\s*\)# \s\@!,\1,e<CR>:nohls<CR>zvj
+autocmd FileType javascript,java,c,cpp map <leader>cc :s,^\(\s*\)[^// \t]\@=,\1\// ,e<CR>:nohls<CR>zvj
+autocmd FileType javascript,java,c,cpp map <leader>cu :s,^\(\s*\)// \s\@!,\1,e<CR>:nohls<CR>zvj
 
 " 高亮搜索的字符串
 set hlsearch
@@ -164,6 +164,14 @@ call plug#end()
 " vim设定airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_tabs=0
+" let g:airline#extensions#tabline#show_buffers=1
+" let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+" let g:airline#extensions#tabline#excludes = ['branches', 'index']
+" let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|term://|undotree|vimfiler'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
 let g:airline_theme='base16'
 
 " 按键map
@@ -186,10 +194,21 @@ map <leader>vs : vs<CR>
 map <leader>vh : sp<CR>
 
 " YouCompleteMe 
-map <leader>gt : YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Toggle highlight search
 map <leader>rh : set hlsearch!<CR>
+
+" 快速选择buffer 
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 " 设定 timer
 set updatetime=200
