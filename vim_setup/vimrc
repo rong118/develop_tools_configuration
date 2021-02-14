@@ -16,15 +16,6 @@ set showmode
 " 启动显示状态行1，总是显示状态行2
 set laststatus=2
 
-" 状态行显示的内容
-" disable it because using vimairline
-"set statusline=[DIRS=%F%m%r%h%w]\ 
-"set statusline+=[FORMAT=%{&ff}]\ 
-"set statusline+=[TYPE=%Y]\ 
-"set statusline+=[POS=%l,%v]\ 
-"set statusline+=[PERCENT=%p%%]\ 
-"set statusline+=%{strftime(\"%d/%m/%y\")}\ 
-
 " 语法高亮显示
 syntax on
 set fileencodings=utf-8,gb2312,gbk,cp936,latin-1
@@ -166,17 +157,16 @@ call plug#end()
 " vim设定airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_tabs=0
-" let g:airline#extensions#tabline#show_buffers=1
-" let g:airline#extensions#tabline#show_tab_nr = 1
-" let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-" let g:airline#extensions#tabline#excludes = ['branches', 'index']
-" let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|term://|undotree|vimfiler'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='base16'
 
-" 按键map
+" 设定 timer
+set updatetime=200
 
+" 切换回normal模式变快
+set timeoutlen=1000 ttimeoutlen=0
+
+" 按键map
 " 打开nerdtree
 map <leader>nt : NERDTreeToggle<CR>
 
@@ -201,18 +191,15 @@ map <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>rh : set hlsearch!<CR>
 
 " 快速选择buffer 
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+map <leader>1 <Plug>AirlineSelectTab1
+map <leader>2 <Plug>AirlineSelectTab2
+map <leader>3 <Plug>AirlineSelectTab3
+map <leader>4 <Plug>AirlineSelectTab4
+map <leader>5 <Plug>AirlineSelectTab5
+map <leader>6 <Plug>AirlineSelectTab6
+map <leader>7 <Plug>AirlineSelectTab7
+map <leader>8 <Plug>AirlineSelectTab8
+map <leader>9 <Plug>AirlineSelectTab9
 
-" 设定 timer
-set updatetime=200
-
-" 切换回normal模式变快
-set timeoutlen=1000 ttimeoutlen=0
+" 处理 vimgrep cmd
+map <leader>co : copen<CR>
