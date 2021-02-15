@@ -148,6 +148,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
+" Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
 Plug 'lfv89/vim-interestingwords'
 call plug#end()
 
