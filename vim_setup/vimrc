@@ -168,9 +168,12 @@ let g:NERDToggleCheckAllLines = 1
 
 " vim设定airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_theme='base16'
+let g:airline_theme='molokai'
 
 " 设定 timer
 set updatetime=200
@@ -196,7 +199,7 @@ map <leader>bd : bd<CR>
 map <leader>vs : vs<CR>
 map <leader>vh : sp<CR>
 
-" YouCompleteMe 
+" 跳转 YouCompleteMe 
 map <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Toggle highlight search
