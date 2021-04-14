@@ -135,17 +135,39 @@ endif
 
 " 插件管理 vim-plug
 call plug#begin()
+
+" The NERDTree is a file explorer for the Vim editor.
 Plug 'scrooloose/nerdtree'
+
+" A plugin of NERDTree showing git status flags.
 Plug 'xuyuanp/nerdtree-git-plugin'
+
+" Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Git Wraper, provide Git command
 Plug 'tpope/vim-fugitive'
+
+" Search file plugin
 Plug 'kien/ctrlp.vim'
+
+" Show a git diff in the sign column
 Plug 'airblade/vim-gitgutter'
+
+" Auto complete plugin
 Plug 'valloric/youcompleteme'
-Plug 'preservim/nerdcommenter'
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
+
+" Enable comment plugin 
+Plug 'preservim/nerdcommenter'
+
+" Word highlighting and navigation throughout
 Plug 'lfv89/vim-interestingwords'
+
+" Show indents
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 " 启动
@@ -176,6 +198,9 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='molokai'
+
+" indent startup
+let g:indent_guides_enable_on_vim_startup = 1
 
 " 设定 timer
 set updatetime=200
@@ -220,3 +245,6 @@ map <leader>9 <Plug>AirlineSelectTab9
 
 " 处理 vimgrep cmd
 map <leader>co : copen<CR>
+
+" indent
+map <leader>hi : IndentGuidesToggle<CR>
