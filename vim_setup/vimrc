@@ -31,6 +31,13 @@ set background=dark
 " 指定配色方案是256色
 set t_Co=256
 
+" 设定字体
+if system('uname -s') == "Darwin\n"
+  set guifont=Roboto\ Mono\ Medium\ for\ Powerline\ 10
+else
+  set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
+endif
+
 " 命令行补全 
 set wildmenu
 
@@ -53,7 +60,7 @@ set noswapfile
 " 启用撤销
 set undodir=~/.vim/undodir
 if !isdirectory(&undodir)
-    call mkdir(&undodir, 'p', 0700)
+  call mkdir(&undodir, 'p', 0700)
 endif
 
 " 用空格代替tab
@@ -72,7 +79,7 @@ set shiftwidth=4
 set showmatch
 
 " 文件缩进及tab个数
-autocmd FileType html,python,vim,javascript setl shiftwidth=4 tabstop=4
+autocmd FileType html,python,vim,javascript,go setl shiftwidth=4 tabstop=4
 autocmd FileType java setl shiftwidth=4 tabstop=4
 autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
 autocmd FileType json  setlocal expandtab shiftwidth=2 softtabstop=2
@@ -142,12 +149,12 @@ Plug 'scrooloose/nerdtree'
 " A plugin of NERDTree showing git status flags.
 Plug 'xuyuanp/nerdtree-git-plugin'
 
+" A Vim plugin which shows a git diff in the 'gutter'
+Plug 'airblade/vim-gitgutter'
+
 " Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Git Wraper, provide Git command
-Plug 'tpope/vim-fugitive'
 
 " Search file plugin
 Plug 'kien/ctrlp.vim'
@@ -170,81 +177,96 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 call plug#end()
 
-" 启动
-" autocmd VimEnter * NERDTree
-
-" 设定comment插件
-" Create default mappings
-let g:NERDCreateDefaultMappings = 1
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
-
-
-" vim设定airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#left_sep = '|'
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline_theme='molokai'
-
-" indent startup
-let g:indent_guides_enable_on_vim_startup = 1
-
 " 设定 timer
 set updatetime=200
 
 " 切换回normal模式变快
 set timeoutlen=1000 ttimeoutlen=0
 
-" 按键map
+
+"""""" nerdtree插件设定
+" 自动打开nerdtree
+"autocmd VimEnter * NERDTree
+
 " 打开nerdtree
-map <leader>nt : NERDTreeToggle<CR>
+nmap <leader>nt : NERDTreeToggle<CR>
+""""""
 
-" 处理tab
-map <leader>ta : tabnew<CR>
-map <leader>tp : tabprevious<CR>
-map <leader>tn : tabnext<CR>
-map <leader>tc : tabclose <CR>
+"""""" nerdcomment插件设定
+let g:NERDCreateDefaultMappings = 1
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+""""""
 
-" 处理 buffer
-map <leader>bn : enew<CR>
-map <leader>bd : bd<CR>
-
-" 分割屏幕 vs and sp
-map <leader>vs : vs<CR>
-map <leader>vh : sp<CR>
-
-" 跳转 YouCompleteMe 
-map <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" Toggle highlight search
-map <leader>rh : set hlsearch!<CR>
+""""""" vim-airline插件设定
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme='base16'
 
 " 快速选择buffer 
-map <leader>1 <Plug>AirlineSelectTab1
-map <leader>2 <Plug>AirlineSelectTab2
-map <leader>3 <Plug>AirlineSelectTab3
-map <leader>4 <Plug>AirlineSelectTab4
-map <leader>5 <Plug>AirlineSelectTab5
-map <leader>6 <Plug>AirlineSelectTab6
-map <leader>7 <Plug>AirlineSelectTab7
-map <leader>8 <Plug>AirlineSelectTab8
-map <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+
+" 处理 buffer
+nmap <leader>bn : enew<CR>
+nmap <leader>bd : bdelete<CR>
+""""""
+
+""""""" vim-indent-guides插件设定
+let g:indent_guides_enable_on_vim_startup = 0
+
+" 启用 indent
+nmap <leader>hi : IndentGuidesToggle<CR>
+"""""""
+
+""""""" vim-gitgutter插件设定
+let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
+
+" vim-gitgutter 按键map
+nmap <leader>nh <Plug>(GitGutterNextHunk)
+nmap <leader>ph <Plug>(GitGutterPrevHunk)
+
+nmap <leader>sh <Plug>(GitGutterPreviewHunk)
+nmap <leader>uh <Plug>(GitGutterUndoHunk)
+
+" close preview
+nmap <leader>pc : pclose<CR>
+"""""""
+
+" 分割屏幕 vs and sp
+nmap <leader>vs : vs<CR>
+nmap <leader>vh : sp<CR>
+
+" 跳转 YouCompleteMe 
+nmap <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Toggle highlight search
+nmap <leader>rh : set hlsearch!<CR>
 
 " 处理 vimgrep cmd
 map <leader>co : copen<CR>
 
-" indent
-map <leader>hi : IndentGuidesToggle<CR>
+" show terminal
+map <leader>tt : term<CR>
+
+" 处理tab (建议用buffer代替） 
+"nmap <leader>ta : tabnew<CR>
+"nmap <leader>tp : tabprevious<CR>
+"nmap <leader>tn : tabnext<CR>
+"nmap <leader>tc : tabclose <CR>
