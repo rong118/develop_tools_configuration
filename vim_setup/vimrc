@@ -135,46 +135,25 @@ endif
 " 文件被改动时自动载入
 set autoread
 
-" 出错不出响声
+" 出错不出响声(only on Mac)
 if $TERM_PROGRAM=~"iTerm"
   set visualbell
 endif
 
 " 插件管理 vim-plug
 call plug#begin()
-
-" The NERDTree is a file explorer for the Vim editor.
-Plug 'scrooloose/nerdtree'
-
-" A plugin of NERDTree showing git status flags.
-Plug 'xuyuanp/nerdtree-git-plugin'
-
-" A Vim plugin which shows a git diff in the 'gutter'
-Plug 'airblade/vim-gitgutter'
-
-" Status/tabline plugin for vim.
-Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'             " The NERDTree is a file explorer for the Vim editor.
+Plug 'xuyuanp/nerdtree-git-plugin'     " A plugin of NERDTree showing git status flags.
+Plug 'airblade/vim-gitgutter'          " A Vim plugin which shows a git diff in the 'gutter'
+Plug 'vim-airline/vim-airline'         " Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline-themes'
-
-" Search file plugin
-Plug 'kien/ctrlp.vim'
-
-" Show a git diff in the sign column
-Plug 'airblade/vim-gitgutter'
-
-" Auto complete plugin
-Plug 'valloric/youcompleteme'
+Plug 'kien/ctrlp.vim'                  " Search file plugin
+Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
+Plug 'valloric/youcompleteme'          " Auto complete plugin
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
-
-" Enable comment plugin 
-Plug 'preservim/nerdcommenter'
-
-" Word highlighting and navigation throughout
-Plug 'lfv89/vim-interestingwords'
-
-" Show indents
-Plug 'nathanaelkane/vim-indent-guides'
-
+Plug 'preservim/nerdcommenter'         " Enable comment plugin 
+Plug 'lfv89/vim-interestingwords'      " Word highlighting and navigation throughout
+Plug 'nathanaelkane/vim-indent-guides' " Show indents
 call plug#end()
 
 " 设定 timer
@@ -235,7 +214,7 @@ nmap <leader>hi : IndentGuidesToggle<CR>
 """""""
 
 """"""" vim-gitgutter插件设定
-let g:gitgutter_enabled = 1
+let g:gitgutter_enabled  = 1
 let g:gitgutter_map_keys = 0
 
 " vim-gitgutter 按键map
@@ -260,10 +239,10 @@ nmap <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <leader>rh : set hlsearch!<CR>
 
 " 处理 vimgrep cmd
-map <leader>co : copen<CR>
+nmap <leader>co : copen<CR>
 
 " show terminal
-map <leader>tt : term<CR>
+nmap <leader>tt : term<CR>
 
 " 处理tab (建议用buffer代替） 
 "nmap <leader>ta : tabnew<CR>
