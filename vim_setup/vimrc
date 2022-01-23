@@ -18,6 +18,7 @@ set laststatus=2
 
 " 语法高亮显示
 syntax on
+
 set fileencodings=utf-8,gb2312,gbk,cp936,latin-1
 set fileencoding=utf-8
 set termencoding=utf-8
@@ -198,11 +199,9 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
 
 " 处理 buffer
-nmap <leader>bn : enew<CR>
+nmap <leader>bc : enew<CR>
 nmap <leader>bd : bdelete<CR>
 """"""
 
@@ -210,7 +209,7 @@ nmap <leader>bd : bdelete<CR>
 let g:indent_guides_enable_on_vim_startup = 0
 
 " 启用 indent
-nmap <leader>hi : IndentGuidesToggle<CR>
+nmap <leader>i : IndentGuidesToggle<CR>
 """""""
 
 """"""" vim-gitgutter插件设定
@@ -218,31 +217,31 @@ let g:gitgutter_enabled  = 1
 let g:gitgutter_map_keys = 0
 
 " vim-gitgutter 按键map
-nmap <leader>nh <Plug>(GitGutterNextHunk)
-nmap <leader>ph <Plug>(GitGutterPrevHunk)
+nmap <leader>n <Plug>(GitGutterNextHunk)
+nmap <leader>p <Plug>(GitGutterPrevHunk)
 
-nmap <leader>sh <Plug>(GitGutterPreviewHunk)
-nmap <leader>uh <Plug>(GitGutterUndoHunk)
+nmap <leader>v <Plug>(GitGutterPreviewHunk)
+nmap <leader>u <Plug>(GitGutterUndoHunk)
 
 " close preview
-nmap <leader>pc : pclose<CR>
+nmap <leader>c : pclose<CR>
 """""""
 
 " 分割屏幕 vs and sp
 nmap <leader>vs : vs<CR>
-nmap <leader>vh : sp<CR>
+nmap <leader>sp : sp<CR>
 
 " 跳转 YouCompleteMe 
-nmap <leader>gd : YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <leader>y : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Toggle highlight search
-nmap <leader>rh : set hlsearch!<CR>
+nmap <leader>h : set hlsearch!<CR>
 
 " 处理 vimgrep cmd
-nmap <leader>co : copen<CR>
+nmap <leader>g : copen<CR>
 
 " show terminal
-nmap <leader>tt : term<CR>
+nmap <leader>t : term<CR>
 
 " 处理tab (建议用buffer代替） 
 "nmap <leader>ta : tabnew<CR>
