@@ -34,9 +34,9 @@ set t_Co=256
 
 " 设定字体
 if system('uname -s') == "Darwin\n"
-  set guifont=Roboto\ Mono\ Medium\ for\ Powerline\ 10
+  set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
 else
-  set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
+  set guifont=Inconsolata\ for\ Powerline\ Medium:h12
 endif
 
 " 命令行补全 
@@ -201,7 +201,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 " 处理 buffer
-nmap <leader>bc : enew<CR>
+nmap <leader>bn : enew<CR>
 nmap <leader>bd : bdelete<CR>
 """"""
 
