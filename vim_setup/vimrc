@@ -53,6 +53,10 @@ set autoindent
 " 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处
 set smartindent
 
+" 显示空白space和tab
+set listchars=tab:>-,space:.
+set list
+
 " vim禁用自动备份
 set nobackup
 set nowritebackup
