@@ -37,7 +37,7 @@ if has('gui_running')  " For using gvim and macvim
   else
     set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
   endif
-else " Access vim from terminal
+else " Accessing vim from terminal
   if system('uname -s') == "Darwin\n"
     set guifont=Roboto\ Mono\ Medium\ for\ Powerline
   else
@@ -77,7 +77,7 @@ endif
 " 用空格代替tab
 set expandtab
 
-" 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4
+" 设置显示制表符的空格字符个数,改进tab缩进值
 set tabstop=4
 
 " 统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格
@@ -108,9 +108,6 @@ set hlsearch
 " 边敲入，边搜索
 set incsearch
 
-" 去掉输入错误提示声音
-set noeb
-
 " 自动保存
 set autowrite
 
@@ -130,7 +127,6 @@ if has('mouse')
 endif
 
 "设置光标样式为竖线vertical bar
-" Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM=~"iTerm"
   let &t_SI="\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
   let &t_EI="\<Esc>]50;CursorShape=0\x7" " Block in normal mode
@@ -146,10 +142,19 @@ endif
 " 文件被改动时自动载入
 set autoread
 
+" 去掉输入错误提示声音
+set noeb
+
 " 出错不出响声(only on Mac)
 if $TERM_PROGRAM=~"iTerm"
   set visualbell
 endif
+
+" 设定 timer
+set updatetime=200
+
+" 切换回normal模式变快
+set timeoutlen=1000 ttimeoutlen=0
 
 " 插件管理 vim-plug
 call plug#begin()
@@ -158,7 +163,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'     " A plugin of NERDTree showing git status
 Plug 'airblade/vim-gitgutter'          " A Vim plugin which shows a git diff in the 'gutter'
 Plug 'vim-airline/vim-airline'         " Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline-themes'
-Plug 'kien/ctrlp.vim'                  " Search file plugin
+Plug 'kien/ctrlp.vim'                  " Search files plugin
 Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
 Plug 'valloric/youcompleteme'          " Auto complete plugin
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
@@ -166,14 +171,8 @@ Plug 'preservim/nerdcommenter'         " Enable comment plugin
 Plug 'lfv89/vim-interestingwords'      " Word highlighting and navigation throughout
 Plug 'nathanaelkane/vim-indent-guides' " Show indents
 Plug 'voldikss/vim-floaterm'           " Float terminal cannot use in vim 8.1
+Plug 'mileszs/ack.vim'                 " Code search plugin by using ack 
 call plug#end()
-
-" 设定 timer
-set updatetime=200
-
-" 切换回normal模式变快
-set timeoutlen=1000 ttimeoutlen=0
-
 
 """""" nerdtree插件设定
 " 自动打开nerdtree
@@ -246,19 +245,49 @@ nmap <leader>t : FloatermToggle<CR>
 
 """""""
 
-" 分割屏幕 vs and sp
-nmap <leader>vs : vs<CR>
-nmap <leader>sp : sp<CR>
+""""""" YouCompleteMe 设定
 
-" 跳转 YouCompleteMe 
+" 跳转 YouCompleteMe
 nmap <leader>y : YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"""""""
+
+""""""" ctrlp 设定
+" 敲击<leader>+p键，进入搜索模式，这里为目录、MRU的混合模式
+let g:ctrlp_map = '<leader>p'
+" 根据通配符来忽略不需要搜索的文件
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+" 本地工作目录的规则，可设置以下选项
+" 'c' - 设为当前文件所在的目录
+" 'r' - 如果最近的祖先有包含以下目录，则将该祖先目录设为工作目录：.git .hg .svn .bzr _darcs, 
+" 'a' - 和c选项类似，理解为仅在r不生效的情况下，才执行c选项
+let g:ctrlp_working_path_mode = 'ra'
+" 哪些文件、目录、链接不在搜索范围内
+let g:ctrlp_custom_ignore = {
+         \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+         \ 'file': '\v\.(exe|so|dll)$',
+         \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+         \ }
+"""""""
+
+""""""" ack.vim 设置
+" 搜索完后不自动跳到第一个结果文件
+cnoreabbrev Ack Ack!
+" 设置搜索快捷键为<leader> + a
+nnoremap <Leader>a :Ack!<Space>
+" ack的选项设置
+let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
+" 如果不输入任何搜索参数，则默认以光标下的单词为搜索条件，并把它映射到<leader> + s上
+nnoremap <leader>s :Ack!<CR>
+" 高亮搜索结果
+let g:ackhighlight = 1
+"""""""
+
+" 垂直分割屏幕
+nmap <leader>vs : vs<CR>
 
 " Toggle highlight search
 nmap <leader>h : set hlsearch!<CR>
-
-" 处理 vimgrep cmd
-nmap <leader>g : copen<CR>
-
 
 " 处理tab (建议用buffer代替） 
 "nmap <leader>ta : tabnew<CR>
