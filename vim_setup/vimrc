@@ -20,8 +20,6 @@ set laststatus=2
 syntax on
 
 set fileencodings=utf-8,gb2312,gbk,cp936,latin-1
-set fileencoding=utf-8
-set termencoding=utf-8
 set fileformat=unix
 set encoding=utf-8
 
@@ -33,10 +31,18 @@ set background=dark
 set t_Co=256
 
 " 设定字体
-if system('uname -s') == "Darwin\n"
-  set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
-else
-  set guifont=Inconsolata\ for\ Powerline\ Medium:h12
+if has('gui_running')  " For using gvim and macvim
+  if system('uname -s') == "Darwin\n"
+    set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
+  else
+    set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
+  endif
+else " Access vim from terminal
+  if system('uname -s') == "Darwin\n"
+    set guifont=Roboto\ Mono\ Medium\ for\ Powerline
+  else
+    set guifont=Inconsolata\ for\ Powerline\ Medium
+  endif
 endif
 
 " 命令行补全 
@@ -80,27 +86,27 @@ set softtabstop=4
 " 设定自动缩进为4个字符，程序中自动缩进所使用的空白长度
 set shiftwidth=4
 
-" 显示匹配的括号
-set showmatch
-
-" 文件缩进及tab个数
-autocmd FileType html,python,vim,javascript,go setl shiftwidth=4 tabstop=4
-autocmd FileType java setl shiftwidth=4 tabstop=4
-autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
-autocmd FileType json  setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType vim   setlocal expandtab shiftwidth=2 softtabstop=2
-
-" 高亮搜索的字符串
-set hlsearch
-
 " 检测文件的类型
 filetype on
 filetype plugin on
 filetype indent on
 
-" C风格缩进
-set cindent
-set completeopt=longest,menu
+" 文件缩进及tab个数
+autocmd Filetype html,vim,json,xml setlocal shiftwidth=2 tabstop=2
+autocmd FileType python,java,javascript,go,perl setlocal shiftwidth=4 tabstop=4
+autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
+
+" 显示匹配的括号
+set showmatch
+
+" 智能大小写
+set smartcase 
+
+" 高亮搜索的字符串
+set hlsearch
+
+" 边敲入，边搜索
+set incsearch
 
 " 去掉输入错误提示声音
 set noeb
@@ -117,9 +123,9 @@ set cursorline
 " 支持鼠标操作
 if has('mouse')
   if has('gui_running') || (&term =~'xterm' && !has('mac'))
-    set mouse=a
+    set mouse=n
   else
-    set mouse=nvi
+    set mouse=a
   endif
 endif
 
@@ -155,10 +161,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'                  " Search file plugin
 Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
 Plug 'valloric/youcompleteme'          " Auto complete plugin
-" Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
+" Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 Plug 'preservim/nerdcommenter'         " Enable comment plugin 
 Plug 'lfv89/vim-interestingwords'      " Word highlighting and navigation throughout
 Plug 'nathanaelkane/vim-indent-guides' " Show indents
+Plug 'voldikss/vim-floaterm'           " Float terminal cannot use in vim 8.1
 call plug#end()
 
 " 设定 timer
@@ -231,6 +238,14 @@ nmap <leader>u <Plug>(GitGutterUndoHunk)
 nmap <leader>c : pclose<CR>
 """""""
 
+""""""" vim-floaterm 设定
+let g:floaterm_autoclose = 1
+
+" Toggle terminal
+nmap <leader>t : FloatermToggle<CR>
+
+"""""""
+
 " 分割屏幕 vs and sp
 nmap <leader>vs : vs<CR>
 nmap <leader>sp : sp<CR>
@@ -244,8 +259,6 @@ nmap <leader>h : set hlsearch!<CR>
 " 处理 vimgrep cmd
 nmap <leader>g : copen<CR>
 
-" show terminal
-nmap <leader>t : term<CR>
 
 " 处理tab (建议用buffer代替） 
 "nmap <leader>ta : tabnew<CR>
