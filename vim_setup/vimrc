@@ -10,7 +10,7 @@ set history=1000
 " 输入的命令显示出来，看的清楚些
 set showcmd
 
-" 显示模式
+"显示模式
 set showmode
 
 " 启动显示状态行1，总是显示状态行2
@@ -168,10 +168,10 @@ Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
 Plug 'valloric/youcompleteme'          " Auto complete plugin
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 Plug 'preservim/nerdcommenter'         " Enable comment plugin 
-Plug 'lfv89/vim-interestingwords'      " Word highlighting and navigation throughout
 Plug 'nathanaelkane/vim-indent-guides' " Show indents
 Plug 'voldikss/vim-floaterm'           " Float terminal cannot use in vim 8.1
-Plug 'mileszs/ack.vim'                 " Code search plugin by using ack 
+Plug 'mileszs/ack.vim'                 " Code search plugin by using ack
+Plug 'mhinz/vim-startify'              " Vim Welcome Screen
 call plug#end()
 
 """""" nerdtree插件设定
@@ -179,7 +179,8 @@ call plug#end()
 "autocmd VimEnter * NERDTree
 
 " 打开nerdtree
-nmap <leader>nt : NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1 " Use shift + i to toogle this setup
+nnoremap <leader>nt : NERDTreeToggle<CR>
 """"""
 
 """""" nerdcomment插件设定
@@ -254,7 +255,7 @@ nmap <leader>y : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""" ctrlp 设定
 " 敲击<leader>+p键，进入搜索模式，这里为目录、MRU的混合模式
-let g:ctrlp_map = '<leader>p'
+let g:ctrlp_map = '<leader>f'
 " 根据通配符来忽略不需要搜索的文件
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 " 本地工作目录的规则，可设置以下选项
