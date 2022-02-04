@@ -92,8 +92,8 @@ filetype plugin on
 filetype indent on
 
 " 文件缩进及tab个数
-autocmd Filetype make,html,vim,json,xml setlocal shiftwidth=2 tabstop=2
-autocmd FileType python,java,javascript,go,perl setlocal shiftwidth=4 tabstop=4
+autocmd Filetype make,html,vim,json,xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python,java,javascript,go,perl setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
 
 " 显示匹配的括号
@@ -119,11 +119,7 @@ set cursorline
 
 " 支持鼠标操作
 if has('mouse')
-  if has('gui_running') || (&term =~'xterm' && !has('mac'))
-    set mouse=n
-  else
-    set mouse=a
-  endif
+  set mouse=n
 endif
 
 "设置光标样式为竖线vertical bar
