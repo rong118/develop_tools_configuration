@@ -152,6 +152,9 @@ set updatetime=200
 " 切换回normal模式变快
 set timeoutlen=1000 ttimeoutlen=0
 
+" split windows to right by default
+set splitright
+
 " 插件管理 vim-plug
 call plug#begin()
 Plug 'scrooloose/nerdtree'             " The NERDTree is a file explorer for the Vim editor.
@@ -159,6 +162,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'     " A plugin of NERDTree showing git status
 Plug 'airblade/vim-gitgutter'          " A Vim plugin which shows a git diff in the 'gutter'
 Plug 'vim-airline/vim-airline'         " Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'              " Git Wraper and show git branch in vim-airline
 Plug 'kien/ctrlp.vim'                  " Search files plugin
 Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
 Plug 'valloric/youcompleteme'          " Auto complete plugin
@@ -194,6 +198,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#hunks#enabled=1
 let g:airline_theme='base16'
 
 " 快速选择buffer 
@@ -281,17 +287,17 @@ let g:ackhighlight = 1
 """""""
 
 """"""" vim-startify 设置
+
 let g:startify_custom_header = [
-            \ '                                                                                   ',
-            \ '                __        __     ___________                                       ',
-            \ '                \ \      / /    |____   ____|       /\      /\                     ',
-            \ '                 \ \    / /          | |           /  \    /  \                    ',
-            \ '                  \ \  / /           | |          / /\ \  / /\ \                   ',
-            \ '                   \ \/ /            | |         / /  \ \/ /  \ \                  ',
-            \ '                    \  /         ____| |____    / /    \  /    \ \                 ',
-            \ '                     \/         |___________|  /_/      \/      \_\                ',
-            \ '                                                                                   ',
-            \ ]
+     \ '   __     _                     ',
+     \ '  /\ \  /| |                    ',
+     \ '  \ \ \ || |                    ',
+     \ '   \ \ \|| | __   __            ',
+     \ '    \ \ \| |/\_\ /\ `¯¯`v¯¯`\   ',
+     \ '     \ \   |\/\¯\\ \ \¯\ \¯\ \  ',
+     \ '      \ \__| \ \_\\ \_\ \_\ \_\ ',
+     \ '       \/_/   \/_/ \/_/\/_/\/_/ ',
+     \ '']
 """""""
 
 " 垂直分割屏幕
