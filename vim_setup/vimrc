@@ -216,6 +216,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 " 处理 buffer
 nmap <leader>bn : enew<CR>
 nmap <leader>bd : bdelete<CR>
+nmap <leader>bc : bp<bar>sp<bar>bn<bar>bd<CR>
 """"""
 
 """"""" vim-indent-guides插件设定
