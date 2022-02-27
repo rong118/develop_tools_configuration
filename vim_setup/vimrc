@@ -215,7 +215,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " 处理 buffer
 nmap <leader>bn : enew<CR>
-nmap <leader>bd : bdelete<CR>
+" nmap <leader>bd : bdelete<CR>
 nmap <leader>bc : bp<bar>sp<bar>bn<bar>bd<CR>
 """"""
 
@@ -300,6 +300,10 @@ let g:startify_custom_header = [
      \ '       \/_/   \/_/ \/_/\/_/\/_/ ',
      \ '']
 """""""
+
+" 在v模式下可以使用tab缩进
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
 " 垂直分割屏幕
 nmap <leader>vs : vs<CR>
