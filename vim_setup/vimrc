@@ -30,18 +30,18 @@ set background=dark
 " 指定配色方案是256色
 set t_Co=256
 
-" 设定字体
-if has('gui_running')  " For using gvim and macvim
+" 设定字体 TODO change for different platforms
+if has('gui_running')  " For using gvim
   if system('uname -s') == "Darwin\n"
-    set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
+    " set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
   else
-    set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
+    " set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
   endif
 else " Accessing vim from terminal
   if system('uname -s') == "Darwin\n"
-    set guifont=Roboto\ Mono\ Medium\ for\ Powerline
+    " set guifont=Roboto\ Mono\ Medium\ for\ Powerline
   else
-    set guifont=Inconsolata\ for\ Powerline\ Medium
+    " set guifont=Inconsolata\ for\ Powerline\ Medium
   endif
 endif
 
@@ -50,8 +50,10 @@ set wildmenu
 
 " 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题
 set nocompatible
+
+" TODO figure out functions of backspace
 set backspace=indent,eol,start
-set backspace=2
+" set backspace=2
 
 " 启用自动对齐功能，把上一行的对齐格式应用到下一行
 set autoindent
@@ -93,7 +95,7 @@ filetype indent on
 
 " 文件缩进及tab个数
 autocmd Filetype make,html,vim,json,xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType python,java,javascript,go,perl setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType python,java,javascript,go,perl setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType c,cpp setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4 cinoptions=:0,g0,(0,w1
 
 " 显示匹配的括号
@@ -157,6 +159,7 @@ set splitright
 
 " 插件管理 vim-plug
 call plug#begin()
+Plug 'morhetz/gruvbox'                 " Gruvbox theme 
 Plug 'scrooloose/nerdtree'             " The NERDTree is a file explorer for the Vim editor.
 Plug 'xuyuanp/nerdtree-git-plugin'     " A plugin of NERDTree showing git status flags.
 Plug 'airblade/vim-gitgutter'          " A Vim plugin which shows a git diff in the 'gutter'
@@ -165,13 +168,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'              " Git Wraper and show git branch in vim-airline
 Plug 'kien/ctrlp.vim'                  " Search files plugin
 Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
-Plug 'valloric/youcompleteme'          " Auto complete plugin
+" Plug 'valloric/youcompleteme'          " Auto complete plugin
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 Plug 'preservim/nerdcommenter'         " Enable comment plugin 
 Plug 'nathanaelkane/vim-indent-guides' " Show indents
 Plug 'voldikss/vim-floaterm'           " Float terminal cannot use in vim 8.1
-Plug 'mileszs/ack.vim'                 " Code search plugin by using ack
-Plug 'mhinz/vim-startify'              " Vim Welcome Screen
+" Plug 'mileszs/ack.vim'                 " Code search plugin by using ack
 call plug#end()
 
 """""" nerdtree插件设定
@@ -181,7 +183,20 @@ call plug#end()
 " 打开nerdtree
 let NERDTreeShowHidden = 1 " Use shift + i to toogle this setup
 nnoremap <leader>nt : NERDTreeToggle<CR>
-""""""
+
+"""""" Xuyuanp/nerdtree-git-plugin 配置
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+  \ "Modified"  : "✹",
+  \ "Staged"    : "✚",
+  \ "Untracked" : "✭",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔︎",
+  \ 'Ignored'   : '☒',
+  \ "Unknown"   : "?"
+  \ }
 
 """""" nerdcomment插件设定
 let g:NERDCreateDefaultMappings = 1
@@ -189,7 +204,6 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
-""""""
 
 """"""" vim-airline插件设定
 let g:airline_powerline_fonts = 1
@@ -217,14 +231,12 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>bn : enew<CR>
 " nmap <leader>bd : bdelete<CR>
 nmap <leader>bc : bp<bar>sp<bar>bn<bar>bd<CR>
-""""""
 
 """"""" vim-indent-guides插件设定
 let g:indent_guides_enable_on_vim_startup = 0
 
 " 启用 indent
 nmap <leader>i : IndentGuidesToggle<CR>
-"""""""
 
 """"""" vim-gitgutter插件设定
 let g:gitgutter_enabled  = 1
@@ -239,7 +251,6 @@ nmap <leader>u <Plug>(GitGutterUndoHunk)
 
 " close preview
 nmap <leader>c : pclose<CR>
-"""""""
 
 """"""" vim-floaterm 设定
 let g:floaterm_autoclose = 1
@@ -247,16 +258,12 @@ let g:floaterm_autoclose = 1
 " Toggle terminal
 nmap <leader>t : FloatermToggle<CR>
 
-"""""""
-
 """"""" YouCompleteMe 设定
 
 " 跳转 YouCompleteMe
 nmap <leader>y : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-"""""""
-
-""""""" ctrlp 设定
+""""""" ctrlp 设定: 文件查找
 " 敲击<leader>+p键，进入搜索模式，这里为目录、MRU的混合模式
 let g:ctrlp_map = '<leader>f'
 " 根据通配符来忽略不需要搜索的文件
@@ -272,9 +279,8 @@ let g:ctrlp_custom_ignore = {
          \ 'file': '\v\.(exe|so|dll)$',
          \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
          \ }
-"""""""
 
-""""""" ack.vim 设置
+""""""" ack.vim 设置：搜索
 " 搜索完后不自动跳到第一个结果文件
 cnoreabbrev Ack Ack!
 " 设置搜索快捷键为<leader> + a
@@ -287,20 +293,7 @@ nnoremap <leader>s :Ack!<CR>
 let g:ackhighlight = 1
 """""""
 
-""""""" vim-startify 设置
-
-let g:startify_custom_header = [
-     \ '   __     _                     ',
-     \ '  /\ \  /| |                    ',
-     \ '  \ \ \ || |                    ',
-     \ '   \ \ \|| | __   __            ',
-     \ '    \ \ \| |/\_\ /\ `¯¯`v¯¯`\   ',
-     \ '     \ \   |\/\¯\\ \ \¯\ \¯\ \  ',
-     \ '      \ \__| \ \_\\ \_\ \_\ \_\ ',
-     \ '       \/_/   \/_/ \/_/\/_/\/_/ ',
-     \ '']
-"""""""
-
+"""""" Others setting
 " 在v模式下可以使用tab缩进
 vmap <Tab> >gv
 vmap <S-Tab> <gv
