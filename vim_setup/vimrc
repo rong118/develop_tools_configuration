@@ -32,11 +32,7 @@ set t_Co=256
 
 " 设定字体 TODO change for different platforms
 if has('gui_running')  " For using gvim
-  if system('uname -s') == "Darwin\n"
-    " set guifont=Roboto\ Mono\ Medium\ for\ Powerline:h12
-  else
     " set guifont=Inconsolata\ for\ Powerline\ Medium\ 10
-  endif
 else " Accessing vim from terminal
   if system('uname -s') == "Darwin\n"
     " set guifont=Roboto\ Mono\ Medium\ for\ Powerline
@@ -128,6 +124,12 @@ endif
 if $TERM_PROGRAM=~"iTerm"
   let &t_SI="\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
   let &t_EI="\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+else
+  if has("autocmd") " xfce4 terminal on Debian
+    au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_IBEAM/' ~/.config/xfce4/terminal/terminalrc"
+    au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+    au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+  endif
 endif
 
 " 共享剪贴板
@@ -166,22 +168,26 @@ Plug 'airblade/vim-gitgutter'          " A Vim plugin which shows a git diff in 
 Plug 'vim-airline/vim-airline'         " Status/tabline plugin for vim.
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'              " Git Wraper and show git branch in vim-airline
-Plug 'kien/ctrlp.vim'                  " Search files plugin
 Plug 'airblade/vim-gitgutter'          " Show a git diff in the sign column
-" Plug 'valloric/youcompleteme'          " Auto complete plugin
-" Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 Plug 'preservim/nerdcommenter'         " Enable comment plugin 
 Plug 'nathanaelkane/vim-indent-guides' " Show indents
 Plug 'voldikss/vim-floaterm'           " Float terminal cannot use in vim 8.1
+Plug 'ktonga/vim-follow-my-lead'       " Show <Leader> mapping
+" Plug 'kien/ctrlp.vim'                  " Search files plugin
+" Plug 'valloric/youcompleteme'          " Auto complete plugin
+" Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 " Plug 'mileszs/ack.vim'                 " Code search plugin by using ack
+" Plug 'kien/ctrlp.vim'                  " Search files plugin
 call plug#end()
 
 """""" nerdtree插件设定
 " 自动打开nerdtree
 "autocmd VimEnter * NERDTree
 
-" 打开nerdtree
+" 打开nerdtree 时显示隐藏文件
 let NERDTreeShowHidden = 1 " Use shift + i to toogle this setup
+
+" 打开nerdtree
 nnoremap <leader>nt : NERDTreeToggle<CR>
 
 """""" Xuyuanp/nerdtree-git-plugin 配置
@@ -216,20 +222,29 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#hunks#enabled=1
 let g:airline_theme='base16'
 
-" 快速选择buffer 
+"""""" buffer 设定
+" 跳转 buffer 1
 nmap <leader>1 <Plug>AirlineSelectTab1
+" 跳转 buffer 2
 nmap <leader>2 <Plug>AirlineSelectTab2
+" 跳转 buffer 3
 nmap <leader>3 <Plug>AirlineSelectTab3
+" 跳转 buffer 4
 nmap <leader>4 <Plug>AirlineSelectTab4
+" 跳转 buffer 5
 nmap <leader>5 <Plug>AirlineSelectTab5
+" 跳转 buffer 6
 nmap <leader>6 <Plug>AirlineSelectTab6
+" 跳转 buffer 7
 nmap <leader>7 <Plug>AirlineSelectTab7
+" 跳转 buffer 8
 nmap <leader>8 <Plug>AirlineSelectTab8
+" 跳转 buffer 9
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-" 处理 buffer
+" 创造新的 buffer
 nmap <leader>bn : enew<CR>
-" nmap <leader>bd : bdelete<CR>
+" 删除current buffer
 nmap <leader>bc : bp<bar>sp<bar>bn<bar>bd<CR>
 
 """"""" vim-indent-guides插件设定
@@ -242,25 +257,26 @@ nmap <leader>i : IndentGuidesToggle<CR>
 let g:gitgutter_enabled  = 1
 let g:gitgutter_map_keys = 0
 
-" vim-gitgutter 按键map
+" 移动到下一个git hunk
 nmap <leader>n <Plug>(GitGutterNextHunk)
+" 移动到上一个git hunk
 nmap <leader>p <Plug>(GitGutterPrevHunk)
-
+" 显示 git hunk
 nmap <leader>v <Plug>(GitGutterPreviewHunk)
+" 撤销 git hunk
 nmap <leader>u <Plug>(GitGutterUndoHunk)
-
-" close preview
+" 关闭 preview 窗口
 nmap <leader>c : pclose<CR>
 
 """"""" vim-floaterm 设定
 let g:floaterm_autoclose = 1
 
-" Toggle terminal
+" 开启 float-terminal
 nmap <leader>t : FloatermToggle<CR>
 
 """"""" YouCompleteMe 设定
 
-" 跳转 YouCompleteMe
+" ycm 跳转 
 nmap <leader>y : YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""" ctrlp 设定: 文件查找
@@ -280,12 +296,12 @@ let g:ctrlp_custom_ignore = {
          \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
          \ }
 
-""""""" ack.vim 设置：搜索
+""""""" Ack.vim 设置：搜索
 " 搜索完后不自动跳到第一个结果文件
 cnoreabbrev Ack Ack!
-" 设置搜索快捷键为<leader> + a
+" Ack搜索快捷键
 nnoremap <Leader>a :Ack!<Space>
-" ack的选项设置
+" Ack的选项设置
 let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
 " 如果不输入任何搜索参数，则默认以光标下的单词为搜索条件，并把它映射到<leader> + s上
 nnoremap <leader>s :Ack!<CR>
@@ -301,7 +317,7 @@ vmap <S-Tab> <gv
 " 垂直分割屏幕
 nmap <leader>vs : vs<CR>
 
-" Toggle highlight search
+" 开启/取消 highlight
 nmap <leader>h : set hlsearch!<CR>
 
 " 处理tab (建议用buffer代替） 
