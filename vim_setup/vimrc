@@ -320,6 +320,12 @@ nmap <leader>vs : vs<CR>
 " 开启/取消 highlight
 nmap <leader>h : set hlsearch!<CR>
 
+" Move between panels
+nmap <leader><up> <C-w><up>
+nmap <leader><down> <C-w><down>
+nmap <leader><left> <C-w><left>
+nmap <leader><right> <C-w><right>
+
 " 处理tab (建议用buffer代替） 
 "nmap <leader>ta : tabnew<CR>
 "nmap <leader>tp : tabprevious<CR>
