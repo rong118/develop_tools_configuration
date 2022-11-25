@@ -170,6 +170,8 @@ lvim.builtin.treesitter.highlight.enable = true
 --     filetypes = { "javascript", "python" },
 --   },
 -- }
+-- lvim.builtin.Diagnostics
+lvim.lsp.diagnostics.virtual_text = false
 
 -- Statusline
 lvim.builtin.lualine.style = "default"
@@ -180,7 +182,7 @@ lvim.plugins = {
     {
       "BurntSushi/ripgrep",
       "ellisonleao/gruvbox.nvim",
-      -- "folke/trouble.nvim",
+      "folke/trouble.nvim",
       -- cmd = "TroubleToggle",
     },
 }
