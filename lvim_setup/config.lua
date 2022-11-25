@@ -13,8 +13,6 @@ lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "gruvbox"
 lvim.background  = "dark"
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -89,12 +87,10 @@ lvim.builtin.treesitter.ensure_installed = {
   "json",
   "lua",
   "python",
-  -- "typescript",
-  -- "tsx",
-  -- "css",
-  -- "rust",
   "java",
+  "go",
   "yaml",
+  "markdown"
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
