@@ -20,6 +20,7 @@ lvim.leader = "space"
 -- Normal mode keymappings
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"                     -- Save file
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<CR>"            -- Open terminal
+lvim.keys.normal_mode["<F12>"] = ":ToggleDiag<CR>"            -- Toggle diagnostics checks
 
 lvim.keys.normal_mode["<S-n>"] = ":BufferLineCycleNext<CR>"   -- Next Buffer
 lvim.keys.normal_mode["<S-p>"] = ":BufferLineCyclePrev<CR>"   -- Prev Buffer
@@ -78,6 +79,10 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+
+-- Disable lsp diagnostics function in nvimtree and bufferline
+lvim.builtin.nvimtree.setup.diagnostics.enable = false
+lvim.builtin.bufferline.options.diagnostics = ""
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -182,17 +187,29 @@ lvim.plugins = {
     {
       "BurntSushi/ripgrep",
       "ellisonleao/gruvbox.nvim",
-      "folke/trouble.nvim",
-      -- cmd = "TroubleToggle",
+      {
+        "folke/trouble.nvim",
+        cmd = "TroubleToggle"
+      },
+      "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim"
     },
 }
 
+
+-- require'toggle_lsp_diagnostics'.init({ start_on = false })
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.json", "*.jsonc" },
+  -- enable wrap mode for json files only
+  command = "setlocal wrap",
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  -- disable diagnostics check
+  command = "ToggleDiagOff",
+})
+
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
