@@ -1,7 +1,7 @@
 {
 "Profiles": [
 {
-  "Thin Strokes" : 3,
+  "ASCII Ligatures" : false,
   "Working Directory" : "\/Users\/rongli",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -324,8 +324,8 @@
     "Green Component" : 0.14117647707462311
   },
   "Name" : "gruvbox_default",
-  "Blinking Cursor" : false,
   "Guid" : "4F73F279-8650-4162-B15E-6FB1FE09C69F",
+  "Blinking Cursor" : false,
   "Ansi 8 Color" : {
     "Red Component" : 0.57254904508590698,
     "Color Space" : "Calibrated",
@@ -358,7 +358,7 @@
     "Green Component" : 0.15686275064945221
   },
   "Blur" : false,
-  "Normal Font" : "DroidSansMonoForPowerline 13",
+  "Normal Font" : "DroidSansMonoNerdFontCompleteM- 14",
   "Vertical Spacing" : 1,
   "Use Underline Color" : false,
   "Ansi 7 Color" : {
@@ -394,11 +394,11 @@
   "Transparency" : 0,
   "HotKey Activated By Modifier" : false,
   "Background Color" : {
-    "Red Component" : 0.10980392247438431,
-    "Color Space" : "Calibrated",
-    "Blue Component" : 0.10980392247438431,
+    "Red Component" : 0.14509803921568629,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.14509803921568629,
     "Alpha Component" : 1,
-    "Green Component" : 0.10980392247438431
+    "Green Component" : 0.14509803921568629
   },
   "Screen" : -1,
   "HotKey Characters Ignoring Modifiers" : " ",
@@ -419,7 +419,7 @@
   ],
   "Use Tab Color" : false,
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
+  "Unicode Normalization" : 0,
   "Custom Directory" : "No",
   "Ansi 5 Color" : {
     "Red Component" : 0.69411766529083252,
@@ -427,7 +427,8 @@
     "Blue Component" : 0.52549022436141968,
     "Alpha Component" : 1,
     "Green Component" : 0.38431373238563538
-  }
+  },
+  "Thin Strokes" : 3
 }
 ]
 }
