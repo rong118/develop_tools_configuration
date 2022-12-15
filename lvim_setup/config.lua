@@ -78,6 +78,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Disable lsp diagnostics function in nvimtree and bufferline
@@ -191,7 +192,7 @@ lvim.plugins = {
         "folke/trouble.nvim",
         cmd = "TroubleToggle"
       },
-      "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim"
+      "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
     },
 }
 
