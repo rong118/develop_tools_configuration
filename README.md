@@ -1,8 +1,7 @@
 ## My Develop Tools Config and Setup
 
 * [Package Manager for MacOS]
-  * [Homebrew](https://brew.sh/)
-  * [Brew list]()
+  * [Homebrew](https://github.com/rong118/develop_tools_config/blob/master/homebrew_setup/homebrew.md)
 * [Version Control]
   * [Git Install](https://git-scm.com/download/mac)
 * [Terminal & Shell]

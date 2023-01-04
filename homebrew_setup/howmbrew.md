@@ -2,7 +2,7 @@
 
 * [Homebrew Website](https://brew.sh/)
 
-Run below command from macOS Terminal
+Run below command from macOS Terminal(Need xcode command line tools)
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
