@@ -6,7 +6,7 @@
   * [Git Install](https://git-scm.com/download/mac)
 * [Terminal & Shell]
   * [iTerm2 Config](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/iterm2_setup.md)
-  * [Zsh Config](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/zsh_setup.md)
+  * [Zsh Config](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/zsh_config.md)
   * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)	zsh plugin
   * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)	zsh plugin
 * [IDE]
