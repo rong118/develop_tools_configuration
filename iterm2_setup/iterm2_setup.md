@@ -12,7 +12,7 @@
     * [Iterm2 Profiles Json](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/iterm2_Profiles.json)
  
 * Setup Font
-    * Choose '[Droid Sans Mono for Powerline Nerd Font Complete]()' due to being compatible with LunarVim.
+    * Choose '[Droid Sans Mono for Powerline Nerd Font Complete](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf)' due to being compatible with LunarVim.
     
     ```
     $ curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
