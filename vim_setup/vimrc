@@ -177,7 +177,6 @@ Plug 'ktonga/vim-follow-my-lead'       " Show <Leader> mapping
 " Plug 'valloric/youcompleteme'          " Auto complete plugin
 " Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' } " For vim 8.1
 " Plug 'mileszs/ack.vim'                 " Code search plugin by using ack
-" Plug 'kien/ctrlp.vim'                  " Search files plugin
 call plug#end()
 
 """""" nerdtree插件设定

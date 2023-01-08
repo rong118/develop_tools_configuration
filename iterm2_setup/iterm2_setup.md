@@ -9,7 +9,7 @@
     * Gruvbox theme ([download](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/iterm2-gruvbox-master.zip)): https://github.com/herrbischoff/iterm2-gruvbox
 
 * Import Iterm2 config file
-    * [Iterm2 Profiles Json](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/iterm2_Profiles.json)
+    * [My Iterm2 Profiles Json](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/iterm2_Profiles.json)
  
 * Setup Font
     * Choose '[Droid Sans Mono for Powerline Nerd Font Complete](https://github.com/rong118/develop_tools_config/blob/master/iterm2_setup/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf)' due to being compatible with LunarVim.
