@@ -13,7 +13,7 @@
   * [Vim Config](https://github.com/rong118/develop_tools_config/blob/master/vim_setup/vim_setup.md)
   * [LunarVim (neovim) Config](https://github.com/rong118/develop_tools_config/blob/master/lvim_setup/lvim_setup.md)
   * [Visual Studio Code](https://code.visualstudio.com)
-* [Install Softwares]
+* [Installed Softwares]
   * [Postman](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
   * [Github](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
   * [Docker](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
