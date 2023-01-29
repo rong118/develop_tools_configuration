@@ -14,7 +14,7 @@
   * [LunarVim (neovim) Config](https://github.com/rong118/develop_tools_config/blob/master/lvim_setup/lvim_setup.md)
   * [Visual Studio Code](https://code.visualstudio.com)
 * [Installed Softwares]
-  * [Postman](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
-  * [Github](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
-  * [Docker](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
-  * [Postgres](https://github.com/rong118/develop_tools_config/blob/master/install_software.md)
+  * [Postman](https://github.com/rong118/develop_tools_config/blob/master/installed_software/install_software.md)
+  * [Github](https://github.com/rong118/develop_tools_config/blob/master/installed_software/install_software.md)
+  * [Docker](https://github.com/rong118/develop_tools_config/blob/master/installed_software/install_software.md)
+  * [Postgres](https://github.com/rong118/develop_tools_config/blob/master/installed_software/install_software.md)
