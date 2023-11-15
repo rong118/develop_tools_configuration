@@ -14,5 +14,9 @@
     - [My config.lua]((https://github.com/rong118/dev_setup/blob/master/lvim_setup/config.lua))
 3. Install ripgrep
     * [ripgrep Github](https://github.com/BurntSushi/ripgrep)
+    
 4. Install Lazygit
     * [lazygit Github](https://github.com/jesseduffield/lazygit)
+
+5. Install fd-find
+    * [fd-find Github](https://github.com/sharkdp/fd)
