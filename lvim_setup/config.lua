@@ -80,7 +80,9 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+lvim.builtin.nvimtree.setup.renderer.highlight_git = true
 
+-- lvim.builtin.nvimtree.setup.renderer.icons.glyphs.folder.default = lvim.icons.ui.Folder
 -- Disable lsp diagnostics function in nvimtree and bufferline
 lvim.builtin.nvimtree.setup.diagnostics.enable = false
 lvim.builtin.bufferline.options.diagnostics = ""
@@ -177,7 +179,7 @@ lvim.builtin.treesitter.highlight.enable = true
 --   },
 -- }
 -- lvim.builtin.Diagnostics
-lvim.lsp.diagnostics.virtual_text = false
+-- lvim.lsp.diagnostics.virtual_text = false
 
 -- Statusline
 lvim.builtin.lualine.style = "default"
@@ -186,18 +188,9 @@ lvim.builtin.lualine.sections.lualine_a = { "mode" }
 -- Additional Plugins
 lvim.plugins = {
     {
-      "BurntSushi/ripgrep",
       "ellisonleao/gruvbox.nvim",
-      {
-        "folke/trouble.nvim",
-        cmd = "TroubleToggle"
-      },
-      "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
     },
 }
-
-
--- require'toggle_lsp_diagnostics'.init({ start_on = false })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -205,16 +198,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- enable wrap mode for json files only
   command = "setlocal wrap",
 })
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  -- disable diagnostics check
-  command = "ToggleDiagOff",
-})
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
