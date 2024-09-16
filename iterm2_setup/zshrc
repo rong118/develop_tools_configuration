@@ -25,9 +25,6 @@ plugins=(git zsh-autosuggestions)
 # enable oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export PATH="/Users/rongli/.local/bin:$PATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -38,27 +35,36 @@ else
   export EDITOR='lvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# PATH setup
+export PATH="$PATH:/Users/rongli/.nvim-macos/bin"
+export PATH="$PATH:/Users/rongli/.local/bin"
+
+# Enable rust & cargo
+. "$HOME/.cargo/env"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias nvim="lvim"
-alias zshconfig="lvim ~/.zshrc"
-alias ll="ls -l"
+alias ll="ls -la"
 alias ltr="ls -ltr"
+
+# LunarVim alias
 alias v="lvim"
+
+# Git command setup
+alias gb="git branch"
+alias gs="git status"
+
+# Link python3 to python
+alias python="python3"
+alias pip="pip3"
 
 # Use zsh-syntax-highlighting
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# nvm setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Personal Vars
-github="/Users/rongli/GitHub"
-rongli="Users/rongli/rongli"
