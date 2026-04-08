@@ -8,51 +8,34 @@ This is a personal developer environment configuration repository. It contains d
 
 ## Repository Structure
 
-- `iterm2_setup/` — macOS terminal setup: iTerm2 profiles, fonts (Powerline/Nerd fonts), and `zshrc` (oh-my-zsh with agnoster theme)
-- `vim_setup/` — Vim configuration: `vimrc` with vim-plug plugin management, `vim_setup.md` setup guide
-- `lvim_setup/` — LunarVim (Neovim) configuration: `config.lua` with LSP/treesitter/plugin settings, `lvim_setup.md` setup guide
-- `homebrew_setup/` — Homebrew installation and package notes
-- `installed_software/` — Links to download common tools (Docker, Postman, Postgres, GitHub)
-- `mac_dev_setup/` — macOS-specific developer environment setup notes
-- `wsl_dev_setup/` — WSL2/Linux developer environment setup notes
+- `README.md` — full setup guide covering all platforms and tools (Homebrew, iTerm2, fonts, oh-my-zsh, nvm, gvm, Miniconda, Neovim)
+- `setup.sh` — interactive automated setup script for macOS, Linux, and WSL2
+- `vim_bkp.zip` — archived backup of old Vim/LunarVim config files (for reference only; not deployed directly)
 
-## Key Configuration Files
+## Key Files
 
-### zshrc (`iterm2_setup/zshrc`)
-- oh-my-zsh with `agnoster` theme and `git`, `zsh-autosuggestions` plugins
-- `zsh-syntax-highlighting` via Homebrew
-- Editor: `lvim` (LunarVim)
-- Key aliases: `v=lvim`, `ll`, `ltr`, `gb`, `gs`, `python=python3`, `pip=pip3`
-- Includes nvm and Rust/cargo setup
+### setup.sh
+- Detects OS: `macos`, `wsl`, or `linux`
+- Prompts before each tool install (`y/n`) — safe to run selectively
+- Backs up `~/.zshrc` to `~/.zshrc.bak` before making changes
+- Installs: zsh (Linux/WSL), Homebrew (macOS), iTerm2 (macOS), Powerline fonts, oh-my-zsh, oh-my-zsh plugins, nvm, gvm, Miniconda, Neovim
+- Sets oh-my-zsh theme to `agnoster` and enables plugins via `sed`
+- Neovim: adds `$HOME/.local/nvim/bin` to `PATH` in `~/.zshrc`
+- **Note:** nvm, gvm, and Miniconda `~/.zshrc` init lines are intentionally left for manual addition — see README for the exact snippets
 
-### vimrc (`vim_setup/vimrc`)
-- Plugin manager: vim-plug (`call plug#begin()`)
-- Theme: gruvbox (dark)
-- Key plugins: NERDTree, vim-airline, vim-gitgutter, vim-floaterm, nerdcommenter
-- Leader key: `\` (default)
-- Indentation: 4 spaces for most languages, 2 spaces for HTML/JSON/XML/Vim
+### README.md
+- Mirrors setup.sh steps with manual instructions and explanations
+- Includes platform-specific variants (macOS Apple Silicon, macOS x86, Linux/WSL)
+- Contains the `~/.zshrc` snippets required after nvm, gvm, and Miniconda installs
 
-### LunarVim config (`lvim_setup/config.lua`)
-- Theme: gruvbox (dark)
-- Leader key: `Space`
-- NvimTree on right side; format-on-save disabled
-- Treesitter parsers: bash, c, javascript, json, lua, python, java, go, yaml, markdown
-- Key normal-mode bindings: `<C-s>` save, `<C-t>` terminal, `<S-n>`/`<S-p>` buffer cycle, `vs`/`hs` splits
-- After changing plugin config: `:PackerInstall` then `:PackerCompile`
+## Deploying on a New Machine
 
-## Deploying Configs
-
-To use these configs on a new machine, copy or symlink the relevant files:
-
+Run the automated script:
 ```sh
-cp iterm2_setup/zshrc ~/.zshrc
-cp vim_setup/vimrc ~/.vimrc
-cp lvim_setup/config.lua ~/.config/lvim/config.lua
+bash setup.sh
 ```
 
-LunarVim install command (release-1.2 for neovim 0.8):
+Or follow the manual steps in `README.md` section by section. After installing nvm, gvm, or Miniconda, add the corresponding `~/.zshrc` init snippets documented in README.md, then run:
 ```sh
-LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+source ~/.zshrc
 ```
-
-LunarVim requires: `ripgrep`, `lazygit`, `fd-find` (install via Homebrew or apt).

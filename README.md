@@ -1,4 +1,13 @@
-# My Develop Tools Configuration
+# My Dev Tools Configuration
+
+## Quick Start
+
+Run the automated setup script — it will detect the OS and prompt before installing each tool:
+
+```sh
+bash setup.sh
+```
+---
 
 ## macOS Setup
 
@@ -49,7 +58,7 @@ sudo apt install -y fonts-powerline
 
 ### Oh-my-zsh
 ```sh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 Set theme in `~/.zshrc`:
 ```
