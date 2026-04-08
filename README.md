@@ -167,3 +167,41 @@ conda env list                     # list all environments
 conda install <package>            # install a package via conda
 pip install <package>              # install a package via pip (inside active env)
 ```
+
+---
+
+## Neovim
+
+Download the latest release from the [Neovim releases page](https://github.com/neovim/neovim/releases/latest).
+
+### Installation
+
+**macOS (Apple Silicon):**
+```sh
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz
+xattr -c nvim-macos-arm64.tar.gz   # remove macOS quarantine attribute
+tar xzf nvim-macos-arm64.tar.gz
+mv nvim-macos-arm64 ~/.local/nvim
+```
+
+**Linux / Windows (WSL):**
+```sh
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+tar xzf nvim-linux-x86_64.tar.gz
+mv nvim-linux-x86_64 ~/.local/nvim
+```
+
+### PATH Setup (all platforms)
+
+Add to `~/.zshrc`:
+```
+export PATH="$HOME/.local/nvim/bin:$PATH"
+```
+Then reload:
+```sh
+source ~/.zshrc
+```
+Verify:
+```sh
+nvim --version
+```
