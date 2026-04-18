@@ -217,6 +217,65 @@ nvim --version
 
 ---
 
+## AWS CLI
+
+The official AWS Command Line Interface for interacting with AWS services.
+
+### Installation
+
+**macOS:**
+```sh
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o /tmp/AWSCLIV2.pkg
+sudo installer -pkg /tmp/AWSCLIV2.pkg -target /
+```
+
+**Linux / Windows (WSL):**
+```sh
+bash install_aws.sh
+```
+
+Or run manually:
+```sh
+# x86_64
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+# arm64
+curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o awscliv2.zip
+
+unzip awscliv2.zip
+sudo ./aws/install
+rm -rf awscliv2.zip aws/
+```
+
+Verify:
+```sh
+aws --version
+```
+
+### Configuration
+```sh
+aws configure
+```
+You will be prompted for:
+- AWS Access Key ID
+- AWS Secret Access Key
+- Default region (e.g. `us-east-1`)
+- Default output format (`json`, `yaml`, or `text`)
+
+Credentials are stored in `~/.aws/credentials` and config in `~/.aws/config`.
+
+### Common Commands
+```sh
+aws sts get-caller-identity          # verify current credentials/identity
+aws s3 ls                            # list S3 buckets
+aws s3 cp <file> s3://<bucket>/      # upload a file to S3
+aws ec2 describe-instances           # list EC2 instances
+aws logs tail <log-group> --follow   # stream CloudWatch logs
+aws configure list-profiles          # list all configured profiles
+aws --profile <profile> <command>    # run command with a specific profile
+```
+
+---
+
 ## lazygit
 
 A terminal UI for git commands.
